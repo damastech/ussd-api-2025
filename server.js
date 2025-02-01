@@ -126,7 +126,12 @@ app.get("/logs", (req, res) => {
     }
 });
 
-// تشغيل API
+/* تشغيل API
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`✅ API يعمل على: http://0.0.0.0:${PORT}`);
+});*/
+
+// ✅ تشغيل API مرة واحدة فقط باستخدام `process.env.PORT`
+app.listen(PORT, () => {
+    console.log(`✅ API يعمل على المنفذ: ${PORT}`);
 });
