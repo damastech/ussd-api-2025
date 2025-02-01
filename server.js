@@ -5,7 +5,7 @@ const fs = require("fs");
 const { exec } = require("child_process");
 
 const app = express();
-const PORT = process.env.PORT || 3000; // ✅ جعل `PORT` ديناميكيًا ليعمل على Railway
+const PORT = process.env.PORT || 3000; // ✅ استخدام المنفذ الصحيح من Railway
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -14,10 +14,12 @@ app.get("/", (req, res) => {
     res.send("✅ API يعمل على Railway!");
 });
 
-// تشغيل API
-app.listen(PORT, () => {
-    console.log(`✅ API يعمل على المنفذ: ${PORT}`);
-});
+// ✅ التأكد من تشغيل `app.listen()` مرة واحدة فقط
+if (!module.parent) {
+    app.listen(PORT, () => {
+        console.log(`✅ API يعمل على المنفذ: ${PORT}`);
+    });
+}
 
 // أكواد USSD لكل شبكة
 const USSD_CODES = {
@@ -124,14 +126,4 @@ app.get("/logs", (req, res) => {
         console.error("🚨 خطأ في جلب السجلات:", error);
         res.status(500).json({ success: false, message: "❌ خطأ في جلب السجلات!" });
     }
-});
-
-/* تشغيل API
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`✅ API يعمل على: http://0.0.0.0:${PORT}`);
-});*/
-
-// ✅ تشغيل API مرة واحدة فقط باستخدام `process.env.PORT`
-app.listen(PORT, () => {
-    console.log(`✅ API يعمل على المنفذ: ${PORT}`);
 });
