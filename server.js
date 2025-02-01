@@ -5,10 +5,19 @@ const fs = require("fs");
 const { exec } = require("child_process");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // ✅ جعل `PORT` ديناميكيًا ليعمل على Railway
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+    res.send("✅ API يعمل على Railway!");
+});
+
+// تشغيل API
+app.listen(PORT, () => {
+    console.log(`✅ API يعمل على المنفذ: ${PORT}`);
+});
 
 // أكواد USSD لكل شبكة
 const USSD_CODES = {
