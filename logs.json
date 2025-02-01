@@ -1,5 +1,13 @@
 [
   {
+    "phone_number": "2959",
+    "amount": "2929",
+    "network": "MTN",
+    "ussd_code": "*123*2959*2929#",
+    "ip": "192.168.178.21",
+    "date": "1.2.2025, 09:03:39"
+  },
+  {
     "phone_number": "0999999999",
     "amount": "500",
     "network": "MTN",

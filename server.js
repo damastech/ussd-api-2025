@@ -7,6 +7,12 @@ const { exec } = require("child_process");
 const app = express();
 const PORT = process.env.PORT || 3000; // ✅ استخدام المنفذ الصحيح من Railway
 
+const PHONES = {
+    "MTN": "http://192.168.178.21:3000/send-ussd",
+    "Syriatel": "http://http://192.168.178.21:3000/send-ussd"
+};
+
+
 app.use(cors());
 app.use(bodyParser.json());
 
